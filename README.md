@@ -8,7 +8,7 @@ Type a project name in lowercase and an OpenType ligature swaps the entire
 sequence for a single glyph that draws that project's card. Type the same
 letters in capitals and they stay ordinary letters.
 
-**[Try it live](https://saksham10arora-dotcom.github.io/portfolio-font/)** ·
+**[Try it live](https://blog.saksham.digital/portfolio-font/)** ·
 [download the .ttf](dist/SakshamCard.ttf)
 
 ```
