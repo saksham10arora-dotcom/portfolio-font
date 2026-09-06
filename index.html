@@ -1,0 +1,97 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Saksham Card — a font where names become cards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @font-face {
+    font-family: "SakshamCard";
+    src: url("dist/SakshamCard.ttf") format("truetype");
+    font-display: block;
+  }
+  :root { --bg:#0d0b14; --ink:#efe9ff; --violet:#aa42ff; --dim:#685c8a; --line:#241d3a; }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; padding:48px 22px 90px; background:var(--bg); color:var(--ink);
+    font:15px/1.65 ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  main { max-width: 860px; margin: 0 auto; }
+  h1 { font-size:19px; font-weight:600; margin:0 0 6px; letter-spacing:.5px; }
+  p  { color:var(--dim); margin:0 0 26px; max-width:62ch; }
+  .stage {
+    border:1px solid var(--line); border-radius:10px; background:#100d1b;
+    padding:26px 22px; margin-bottom:14px; overflow-x:auto;
+  }
+  #out {
+    font-family:"SakshamCard"; font-size:46px; color:var(--ink);
+    white-space:pre; min-height:64px; line-height:1.5;
+  }
+  input {
+    width:100%; margin-top:14px; padding:12px 14px; border-radius:8px;
+    border:1px solid var(--line); background:#0b0912; color:var(--ink);
+    font:14px ui-monospace,Menlo,monospace; outline:none;
+  }
+  input:focus { border-color:var(--violet); }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 30px; }
+  .chips button {
+    font:12px ui-monospace,Menlo,monospace; color:var(--dim); cursor:pointer;
+    background:#12101d; border:1px solid var(--line); border-radius:20px; padding:6px 13px;
+  }
+  .chips button:hover { color:var(--ink); border-color:var(--violet); }
+  .note { color:var(--dim); font-size:13px; }
+  code { color:var(--violet); }
+  a { color:var(--violet); }
+  h2 { font-size:14px; letter-spacing:1px; color:var(--dim); margin:34px 0 10px; font-weight:600; }
+</style>
+<main>
+  <h1>Saksham Card</h1>
+  <p>
+    A typeface where certain words stop being words. Type a project name in
+    lowercase and an OpenType ligature swaps the whole sequence for a single
+    glyph that draws that project's card. Type it in capitals and it stays
+    ordinary letters.
+  </p>
+
+  <div class="stage"><div id="out">saksham</div></div>
+  <input id="in" value="saksham" spellcheck="false" autocomplete="off" aria-label="Type here">
+
+  <div class="chips">
+    <button>saksham</button><button>gitrade</button><button>lmex</button>
+    <button>qrscholes</button><button>latch</button>
+    <button>SAKSHAM stays letters</button>
+  </div>
+
+  <h2>WHAT IT ACTUALLY IS</h2>
+  <p class="note">
+    Every glyph is drawn from a pixel grid, and each card is one glyph, not a
+    picture. It is a real <code>.ttf</code>: install it and the ligatures fire
+    in any application that shapes OpenType text, including Figma, Word and
+    your terminal.
+  </p>
+  <p class="note">
+    Lowercase and uppercase are separate glyphs on purpose. The substitution
+    rules are bound only to the lowercase ones, which is what lets
+    <code>saksham</code> become a card while <code>SAKSHAM</code> stays
+    readable.
+  </p>
+
+  <h2>GET IT</h2>
+  <p class="note">
+    <a href="dist/SakshamCard.ttf" download>Download SakshamCard.ttf</a> ·
+    <a href="https://github.com/saksham10arora-dotcom/portfolio-font">source</a> ·
+    <a href="https://saksham.digital">saksham.digital</a>
+  </p>
+</main>
+<script>
+  const inp = document.getElementById("in");
+  const out = document.getElementById("out");
+  const sync = () => { out.textContent = inp.value || " "; };
+  inp.addEventListener("input", sync);
+  document.querySelectorAll(".chips button").forEach((b) =>
+    b.addEventListener("click", () => {
+      inp.value = b.textContent.split(" ")[0];
+      sync();
+      inp.focus();
+    })
+  );
+  sync();
+</script>
